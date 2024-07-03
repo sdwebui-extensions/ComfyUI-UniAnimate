@@ -2,9 +2,9 @@ import os
 import shutil
 
 now_dir = os.path.dirname(os.path.abspath(__file__))
-from modelscope.hub.snapshot_download import snapshot_download
+# from modelscope.hub.snapshot_download import snapshot_download
 # if not os.path.isfile(os.path.join(now_dir,"UniAnimate","checkpoints","unianimate_16f_32f_non_ema_223000.pth")):
-snapshot_download('iic/unianimate', local_dir=os.path.join(now_dir,"UniAnimate","checkpoints"))
+# snapshot_download('iic/unianimate', local_dir=os.path.join(now_dir,"UniAnimate","checkpoints"))
     # shutil.move(os.path.join(now_dir,"checkpoints","iic","unianimate"),os.path.join(now_dir,"UniAnimate","checkpoints"))
     # shutil.rmtree(os.path.join(now_dir,'checkpoints'))
 #else:

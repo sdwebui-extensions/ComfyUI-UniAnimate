@@ -7,7 +7,10 @@ from moviepy.editor import VideoFileClip
 input_dir = folder_paths.get_input_directory()
 output_dir = folder_paths.get_output_directory()
 now_dir = os.path.dirname(os.path.abspath(__file__))
-ckpt_dir = os.path.join(now_dir,"UniAnimate", "checkpoints")
+ckpt_dir = os.path.join(folder_paths.models_dir,"UniAnimate")
+cache_dir = "/stable-diffusion-cache/models/unianimate"
+if os.path.exists(cache_dir):
+    ckpt_dir = cache_dir
 python_exec = sys.executable or "python"
 
 class PoseAlignNode:
@@ -75,7 +78,7 @@ class UniAnimateNode:
 
     CATEGORY = "AIFSH_UniAnimate"
 
-    def generate(self,ref_name,base_config,frame_interval,max_frames,resolution,context_overlap,use_fp16):
+    def generate(self,ref_name, pose_dir, base_config,frame_interval,max_frames,resolution,context_overlap,use_fp16):
         default_yaml_path = os.path.join(now_dir,"UniAnimate", "configs",base_config)
 
         with open(default_yaml_path, 'r', encoding="utf-8") as f:
