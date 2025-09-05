@@ -7,18 +7,18 @@ function fitHeight(node) {
     node?.graph?.setDirtyCanvas(true);
 }
 
-function previewVideo(node,file){
+function UniAnimatepreviewVideo(node,file){
     while (node.widgets.length > 2){
         node.widgets.pop()
     }
     try {
-        var el = document.getElementById("uploadVideo");
+        var el = document.getElementById("UniAnimateuploadVideo");
         el.remove();
     } catch (error) {
         console.log(error);
     }
     var element = document.createElement("div");
-    element.id = "uploadVideo";
+    element.id = "UniAnimateuploadVideo";
     const previewNode = node;
     var previewWidget = node.addDOMWidget("videopreview", "preview", element, {
         serialize: false,
@@ -147,7 +147,7 @@ function videoUpload(node, inputName, inputData, app) {
 
                 if (updateNode) {
                     videoWidget.value = path;
-                    previewVideo(node,path)
+                    UniAnimatepreviewVideo(node,path)
                     
                 }
             } else {
@@ -178,10 +178,10 @@ function videoUpload(node, inputName, inputData, app) {
 
     uploadWidget.serialize = false;
 
-    previewVideo(node, videoWidget.value);
+    UniAnimatepreviewVideo(node, videoWidget.value);
     const cb = node.callback;
     videoWidget.callback = function () {
-        previewVideo(node,videoWidget.value);
+        UniAnimatepreviewVideo(node,videoWidget.value);
         if (cb) {
             return cb.apply(this, arguments);
         }
@@ -190,13 +190,13 @@ function videoUpload(node, inputName, inputData, app) {
     return { widget: uploadWidget };
 }
 
-ComfyWidgets.VIDEOPLOAD = videoUpload;
+ComfyWidgets.UniAnimateVIDEOPLOAD = videoUpload;
 
 app.registerExtension({
-	name: "UniAnimate.UploadVideo",
+	name: "UniAnimate.UniAnimateUploadVideo",
 	async beforeRegisterNodeDef(nodeType, nodeData, app) {
 		if (nodeData?.name == "UniAnimateLoadVideo") {
-			nodeData.input.required.upload = ["VIDEOPLOAD"];
+			nodeData.input.required.upload = ["UniAnimateVIDEOPLOAD"];
 		}
 	},
 });
