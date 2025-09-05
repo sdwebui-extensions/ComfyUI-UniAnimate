@@ -195,7 +195,7 @@ ComfyWidgets.VIDEOPLOAD = videoUpload;
 app.registerExtension({
 	name: "UniAnimate.UploadVideo",
 	async beforeRegisterNodeDef(nodeType, nodeData, app) {
-		if (nodeData?.name == "LoadVideo") {
+		if (nodeData?.name == "UniAnimateLoadVideo") {
 			nodeData.input.required.upload = ["VIDEOPLOAD"];
 		}
 	},
